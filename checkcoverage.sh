@@ -35,7 +35,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 
         if [[ $lines -lt $LIMIT || ( $STRICT -ge $STRICTVALUE  && ( $branch -lt $LIMIT || $func -lt $LIMIT || $stmts -lt $LIMIT ) ) ]]; then
 
-            printf "\n${file_nesp}:"
+            printf "\n${file_nesp}:\n"
             echo "-------------"
             STOPEXIT=1
         fi
