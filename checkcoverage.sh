@@ -16,10 +16,6 @@ if [ $# -gt 2 ]; then
     STRICT=1
 fi
 
-echo $FILE
-echo $LIMIT
-echo $STRICT
-
 while IFS='' read -r line || [[ -n "$line" ]]; do
 
     IFS='|' read -a mylinearray <<< "$line"
@@ -42,22 +38,22 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
         fi
 
         if [[ $lines -lt $LIMIT ]]; then
-            echo "Line coverage:       ${lines}%"
-            echo "Lines not covered:   ${unc}"
+            printf "%-30s %s\n" "Line coverage:" "${lines}%"
+            printf "%-30s %s\n" "Line numbers:" ${unc}
         fi
 
         if [[ $STRICT -ge $STRICTVALUE ]]; then
 
             if [[ $stmts -lt $LIMIT ]]; then
-                echo "Statement coverage:  ${stmts}%"
+                printf "%-30s %s\n" "Statement coverage:" "${stmts}%"
             fi
 
             if [[ $branch -lt $LIMIT ]]; then
-                echo "Branch coverage:     ${branch}%"
+                printf "%-30s %s\n" "Branch coverage:" "${branch}%"
             fi
 
             if [[ $func -lt $LIMIT ]]; then
-                echo "Function coverage:   ${func}%"
+                printf "%-30s %s\n" "Function coverage:" "${func}%"
             fi
 
         fi
