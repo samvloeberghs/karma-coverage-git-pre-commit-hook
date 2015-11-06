@@ -1,4 +1,12 @@
-#!/bin/bash
+#!/bin/sh
+
+# check which branch we are working on
+# only run these tests on develop & master branch
+# allows to code and commit on feature or personal branches
+branch=$(eval "git branch | grep \* | cut -f2 -d' '")
+if [[  ! ( $branch == "master" || $branch == "develop" ) ]]; then
+    exit 0
+fi;
 
 FILE=$1
 if [ $# -lt 1 ]; then
